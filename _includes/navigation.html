@@ -1,0 +1,5 @@
+{% for page in site.pages %}
+    {% if page.tags contains "navigation" %}
+    	<a href="{{ page.url }}">{{ page.title }}</a>
+    {% endif %}
+{% endfor %}

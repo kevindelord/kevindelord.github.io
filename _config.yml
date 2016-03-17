@@ -1,0 +1,104 @@
+# Site settings
+title:                Kevin Delord
+email:                delord.kevin@gmail.com
+author:               Kevin Delord
+description:          "Club Mate powered"
+baseurl:              ""
+url:                  "http://kevindelord.github.io"
+date_format:          "%b %-d, %Y"
+
+# Google services
+google_verification:
+# Use either direct GA implementation or set up GTM account
+# - using both will skew your data (leave blank to not use at all)
+google_analytics:
+google_tag_manager:
+# Bing services
+bing_verification:
+
+# Optional features
+animated:             true
+show_related_posts:   false
+show_post_footers:    false
+show_social_icons:    true
+ajaxify_contact_form: false
+enable_mathjax:       false
+extended_fonts:       false
+
+# Disqus post comments
+# (leave blank to disable Disqus)
+disqus_shortname:
+
+# Facebook Comments plugin
+# (leave blank to disable Facebook Comments, otherwise set it to true)
+facebook_comments:
+facebook_appid:
+facebook_comments_number: 10
+
+# Social icons
+soundcloud_username:  mynameiskevinbeacon
+facebook_username:    delord.kevin
+github_username:      kevindelord
+linkedin_username:    kevindelord
+stackoverflow_id:     2790648
+spotify_id:           117028324
+skype_username:
+twitter_username:
+google_plus_id:
+bitbucket_username:
+angellist_username:
+medium_id:
+bitcoin_url:
+paypal_url:
+flattr_button:
+
+# Post sharing icons
+show_sharing_icons: true
+# Change to 'true' to enable individual icons
+share_facebook:     true
+share_twitter:      true
+share_googleplus:   false
+share_linkedin:     true
+share_digg:         false
+share_tumblr:       false
+share_reddit:       false
+share_stumbleupon:  false
+share_hackernews:   false
+
+text:
+  pagination:
+    newer:          'Newer'
+    older:          'Older'
+  share_buttons:
+    text:           'Share this post!'
+    facebook:       'Share on Facebook'
+    twitter:        'Share on Twitter'
+    googleplus:     'Share on Google+'
+    linkedin:       'Share on LinkedIn'
+    digg:           'Share on Digg'
+    tumblr:         'Share on Tumblr'
+    reddit:         'Share on Reddit'
+    stumbleupon:    'Share on StumbleUpon'
+    hackernews:     'Share on Hacker News'
+  post:
+    updated:        'Updated'
+    minute_read:    'minute read'
+    related_posts:  'Related Posts'
+  index:
+    coming_soon:    'Coming soon...'
+  og_locale:        'en_US'
+
+# Build settings
+markdown:     kramdown
+redcarpet:
+  extensions: ['smart', 'tables', 'with_toc_data']
+permalink:    pretty
+sass:
+  compressed: true
+gems:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji
+paginate:     5
+# https://github.com/jekyll/jekyll/issues/2938
+exclude: [vendor]
