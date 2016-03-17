@@ -68,6 +68,20 @@ Here's some HTML:
 </div>
 {% endhighlight %}
 
+And a bit of Swift code:
+
+{% highlight swift %}
+
+func superTest(name: String?) -> Bool {
+  if let name = name {
+    print(name)
+    return false
+  }
+  return false
+}
+
+{% endhighlight %}
+
 # Headings!
 
 They're responsive, and well-proportioned (in `padding`, `line-height`, `margin`, and `font-size`).
