@@ -3,6 +3,7 @@ pre code {
   background-color: transparent;
   border-radius: $pre-border-radius;
   font-size: medium;
+  color: white;
 }
 
 pre,
@@ -11,7 +12,7 @@ code {
 }
 
 code {
-  color: white;
+  color: #999;
 }
 
 pre {
