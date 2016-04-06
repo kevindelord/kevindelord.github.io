@@ -1,8 +1,7 @@
 ---
 layout:     post
 title:      Integrate Swiftlint
-date:       2015-05-04 14:10:00
-summary:    Learn how to set up Swiftlint within an Xcode project.
+summary:    Learn how to install Swiftlint on your computer and configure an existing Xcode project.
 ---
 
 SwiftLint is an experimental tool enforcing Swift style and conventions, loosely based on [GitHub's Swift Style Guide](https://github.com/github/swift-style-guide).
@@ -76,7 +75,7 @@ NB: If the project already integrates Swiftlint, the `.swiftlint.yml` should be 
 
 ### Setup Xcode
 
-To integrate SwiftLint into a Xcode project, you need to create a new `Run Script Phase`.
+To integrate SwiftLint into an existing Xcode project, you need to create a new `Run Script Phase`.
 
 It should be configured like this:
 
@@ -151,4 +150,4 @@ $> swiftlint rules force_cast
 | valid_docs                  | Documented declarations should be valid. |
 | variable_name               | Variable names should only contain alphanumeric characters and start with a lowercase character or should only contain capital letters. In an exception to the above, variable names may start with a capital letter when they are declared static and immutable. Variable names should not be too long or too short. |
 
-Enjoy coding :]
+Enjoy coding with Swiftlint :]
