@@ -22,9 +22,12 @@
   color: $hljs-keyword;
 }
 
-.highlight .nf,
-.highlight .kt {
+.highlight .nf {
   color: $hljs-type;
+}
+
+.highlight .kt {
+  color: $hljs-attribute;
 }
 
 .highlight .na,
