@@ -1,9 +1,7 @@
 ---
 layout:     post
 title:      Pixyll in Action
-date:       2014-06-10 12:31:19
 summary:    See what the different elements looks like. Your markdown has never looked better. I promise.
-categories: ios
 ---
 
 There is a significant amount of subtle, yet precisely calibrated, styling to ensure
@@ -80,6 +78,37 @@ func superTest(name: String?) -> Bool {
   return false
 }
 
+
+func showCounterLabels(message: String) {
+  //
+  // Important to set this state,
+  // otherwise the remainingLabel will be updated with some other content
+  //
+  self.blockUpdateRemaining  = true
+  self.remainingLabel?.alpha = 1
+  self.counterLabel?.alpha   = 1
+  self.hintLabel?.alpha      = 0
+  self.remainingLabel?.text  = message
+}
+
+override func viewDidAppear(animated: Bool) {
+  super.viewDidAppear(animated)
+
+  let product = (self.reader == nil ? APIUser.Product.RandomCall : APIUser.Product.DedicatedCall)
+  APIManager.getCostForProduct(product) { [weak self] (remaining: Int, pricePerUnit: Int, currentCoins: Int) in
+    if (remaining <= 0) {
+      self?.showNotEnoughCoinsAlert(isCall: true)
+    } else if (currentCoins < ACConstants.CallThresholdLimit) {
+      self?.showCallWarningCoinThreshold()
+    } else {
+      // call request
+      self?.createCallRequest()
+      // start seach animation
+      ACCallSearchAnimation.startAnimationInView(self?.searchingImage)
+    }
+  }
+}
+
 {% endhighlight %}
 
 # Headings!
@@ -147,3 +176,47 @@ Happy writing.
 ---
 
 [^1]: Important information that may distract from the main text can go in footnotes.
+
+
+Indent using tabs equivalent to 4 spaces, and indent by inserting tab characters. Be sure to set xcode like this:
+
+```
+Indent using tabs equivalent to 4 spaces, and indent by inserting tab characters. Be sure to set xcode like this:
+```
+
+
+![_config.yml]({{ site.baseurl }}/images/screens/indentation.png)
+
+Also think about automatically trim the whitespaces:
+
+![_config.yml]({{ site.baseurl }}/images/screens/trim-whitespaces.png)
+
+_![_config.yml]({{ site.baseurl }}/images/big.jpg)_
+
+:+1:
+
+
+:-1:
+
+
+
+Hello.
+
+C'est cool hein?
+
+:+1: :+1: :+1: :+1: :+1: 
+
+Pixyll is a simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff. It's mobile _first_, fluidly responsive, and delightfully lightweight.
+
+It's pretty minimal, but leverages large type and drastic contrast to make a statement, on all devices.
+
+<blockquote>
+  <p>
+    Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
+  </p>
+  <footer><cite title="Antoine de Saint-Exupéry">Antoine de Saint-Exupéry</cite></footer>
+</blockquote>
+
+## Where is it?
+
+lol. everywhere.
