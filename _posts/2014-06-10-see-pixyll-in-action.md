@@ -78,6 +78,37 @@ func superTest(name: String?) -> Bool {
   return false
 }
 
+
+func showCounterLabels(message: String) {
+  //
+  // Important to set this state,
+  // otherwise the remainingLabel will be updated with some other content
+  //
+  self.blockUpdateRemaining  = true
+  self.remainingLabel?.alpha = 1
+  self.counterLabel?.alpha   = 1
+  self.hintLabel?.alpha      = 0
+  self.remainingLabel?.text  = message
+}
+
+override func viewDidAppear(animated: Bool) {
+  super.viewDidAppear(animated)
+
+  let product = (self.reader == nil ? APIUser.Product.RandomCall : APIUser.Product.DedicatedCall)
+  APIManager.getCostForProduct(product) { [weak self] (remaining: Int, pricePerUnit: Int, currentCoins: Int) in
+    if (remaining <= 0) {
+      self?.showNotEnoughCoinsAlert(isCall: true)
+    } else if (currentCoins < ACConstants.CallThresholdLimit) {
+      self?.showCallWarningCoinThreshold()
+    } else {
+      // call request
+      self?.createCallRequest()
+      // start seach animation
+      ACCallSearchAnimation.startAnimationInView(self?.searchingImage)
+    }
+  }
+}
+
 {% endhighlight %}
 
 # Headings!
