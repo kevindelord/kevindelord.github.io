@@ -9,3 +9,9 @@ a:active {
   color: $link-hover-color;
   text-decoration: none;
 }
+
+a:inactive {
+  border: 0;
+  color: $link-hover-color;
+  text-decoration: none;
+}
