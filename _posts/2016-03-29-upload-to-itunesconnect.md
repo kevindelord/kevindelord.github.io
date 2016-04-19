@@ -140,7 +140,7 @@ In order to manually upload the new version to Hockey, you need two things:
 - The **.ipa binary** previously generated. 
 - The **.dSYM.zip** file related to the binary.
 
-Once you have both files, please see how you can [manually upload a new app version to hockey](/2016/04/19/integrate-hockey).
+Once you have both files, please see how you can [manually upload a new app version to hockey](/2016/04/19/configure-hockeyapp).
 
 ### Find the dSYM file
 
