@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Integrate Hockey SDK
-summary:    Configure a new app in hockey with a specific naming convention and other tips.
+title:      Configure HockeyApp
+summary:    Configure a new app in HockeyApp with a specific naming convention and other tips.
 ---
 
 This page explains how to configure a new app in hockey with a specific naming convention and other tips.
