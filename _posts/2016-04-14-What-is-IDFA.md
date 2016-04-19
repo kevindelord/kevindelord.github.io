@@ -57,7 +57,7 @@ There is an [easy way](http://stackoverflow.com/questions/23124663/does-this-app
 Within the command line, go to your project/workspace folder and run the following command to find which files are using the advertising identifier.
 
 {% highlight lineanchors %}
-fgrep -R advertisingIdentifier .
+$> fgrep -R advertisingIdentifier .
 {% endhighlight lineanchors %}
 
 ## Submit an app on iTunesConnect
