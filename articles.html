@@ -1,14 +1,14 @@
 ---
 layout: page
-title: List
-permalink: /List/
-<!-- tags: navigation -->
+title: Articles
+permalink: /articles/
+tags: navigation
 ---
 
 {% assign posts_count = (site.posts | size) %}
 
 {% if posts_count > 0 %}
-	<p>All posts:</p>
+	<p>Here is the list of all articles on this blog:</p>
   	<ul>
 	{% for post in site.posts %}
 	 	{% if post.url %}
