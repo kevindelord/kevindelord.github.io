@@ -45,7 +45,7 @@ First on the _Hockey Dashboard_, click on **New App**. You should see the follow
 Click on the small **manually** link.
 
 ![_config.yml]({{ site.baseurl }}/images/hockey/manually.jpg)
- 
+
 Then you need to specify a **Release Type**, **Title** and **Bundle Identifier**.
 
 ![_config.yml]({{ site.baseurl }}/images/hockey/app_type.png)
