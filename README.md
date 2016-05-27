@@ -12,6 +12,16 @@ And test using:
 
 http://127.0.0.1:4000/
 
+## Add a new post
+
+Execute the following script:
+
+```
+$> ./create_new_post.py
+```
+
+It will create a new `.md` file ready to be filled!
+
 ## Links
 
 - https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/
@@ -20,4 +30,3 @@ http://127.0.0.1:4000/
 - http://alisoftware.github.io/
 - https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 - http://www.emoji-cheat-sheet.com/
-- http://nadjetey.github.io/GridGallery/
