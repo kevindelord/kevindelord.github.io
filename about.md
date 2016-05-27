@@ -21,7 +21,7 @@ Over the years, I've worked on more than 40 projects, and my skills include:
 I'm also doing and maintaining few iOS libraries:
 
 * [DKHelper](https://github.com/kevindelord/DKHelper): Utility methods to improve code quality and reusability.
-* [DKDBManager](https://github.com/kevindelord/DKDBManager): Database manager with a complete CRUD integration. 
+* [DKDBManager](https://github.com/kevindelord/DKDBManager): Database manager with a complete CRUD integration.
 * [UIImage+Autoresize](https://github.com/kevindelord/UIImage-Autoresize): Naming convention for fullscreen images for all devices.
 
 If you are interested in my resume, click here (:construction_worker:)
@@ -38,8 +38,10 @@ PS: It's all open source, send me a Pull Request :bowtie:
 
 ## World Trip
 
-I recently took the biggest decision of my life (so far).
-
 Starting September 2016, I will start a world trip for about 2 years.
 
-A blog about it is coming, just wait for it :yum:
+If you are interesting, I will post some pictures on this website: [picturemy.world](picturemy.world)
+
+Best,
+
+Kevin :yum:
