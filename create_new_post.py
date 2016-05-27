@@ -1,8 +1,6 @@
 #!/usr/bin/python
-import sys
 import argparse
 import os
-import subprocess
 import re
 import time
 from datetime import datetime
@@ -81,15 +79,10 @@ def createMarkdownFile(filename, date, title, text):
 	f = open(md_path,'w')
 	f.write('---\nlayout: post\n') # python will convert \n to os.linesep
 	f.write('title: %s\n' % title)
-	f.write('summary: %s.jpg\n' % text)
+	f.write('summary: %s\n' % text)
 	f.write('---\n')
 	f.close() # you can omit in most cases as the destructor will call it
 
-# ---
-# layout:     post
-# title:      Integrate Swiftlint
-# summary:    Learn how to install Swiftlint on your computer and configure an existing Xcode project.
-# ---
 # Get all important data
 date = getDate()
 filename = getFilename()
