@@ -13,9 +13,12 @@ When these memory violations occur, your app can crash unpredictably or display 
 ## Integration
 
 The Address Sanitizer is a very good tool to find memory management issues.
-But it has its inconveniences: the code needs to be rebuilts and it slows down the app a bit (2x-5x CPU and 2x-3x memory).
 
-Plus, to find errors you need to execute the code, thus only at runtime the memory corruption will be caught.
+But it has its inconveniences:
+
+- the code needs to be rebuilts.
+- it slows down the app a bit (2x-5x CPU and 2x-3x memory).
+- to find errors you need to execute the code, thus only at runtime the memory corruption will be caught.
 
 This tool only work on DEBUG and will never reach the customers/beta testers through an archived/RELEASE version.
 
