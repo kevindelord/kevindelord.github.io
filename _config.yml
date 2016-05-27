@@ -4,7 +4,7 @@ email:                delord.kevin@gmail.com
 author:               Kevin Delord
 description:          "Club Mate powered"
 baseurl:              ""
-url:                  "http://kevindelord.github.io"
+url:                  "http://kevindelord.io"
 date_format:          "%b %-d, %Y"
 
 # Google services
