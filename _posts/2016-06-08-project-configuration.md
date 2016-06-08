@@ -12,26 +12,27 @@ Within Xcode the targets are used to differentiate the builds and the _configura
 
 ## Project structure
 
-Your project's repository should be structured like this:
+Your project's repository could be structured like this:
 
 | Folder  | Description |
 |:------|:------------|
-| Core |	All our own code and header files (structured with subfolders): AppDelegate, Defines.h, Constants.h, ViewController/Dashboard, AdditionalViews/Cell/..., etc. |
-| Resources |	Everything that isn't code and can be exchanged easily by anybody: Images(.xcassets), Settings.Bundle, HTML, Localisation string files, etc. |
-| External | Third Party libraries that cannot be integrated with as pod. |
-| Helpers |	Helper and manager classes that are generic enough to be copied/pasted (and slightly modified) into projects: HockeySDK, APIManager, DBManager, etc. |
-| Podfile |	https://cocoapods.org/ |
-| Podfile.lock |	https://cocoapods.org/ |
-| Cartfile | |
-| Cartfile.resolved | |
-| Pods |	Folder containing pods code sources. Should not be pushed on the repo. (Update the gitignore file!). |
-| PLists |	Folder containing all target info plist and CloudKit entitlements files: Dr.Oetker-Verlag-Alpha-AdHoc-Info.plist, Digster Live.entitlements. |
-| README |	File explaining, at least, how to clone, configure (submodules + pods) and run the project. |
+| Cartfile | File listing all third party librairies integrated through Carthage |
+| Cartfile.resolved | Generated file tracking the version of each library that was installed with Carthage. |
+| Carthage | Folder containing Carthage's builds and checkouts. Could not be pushed on the repo (update the gitignore file). |
+| Core | All our own code and header files (structured with subfolders): AppDelegate, Defines.h, Constants.h, ViewController/Dashboard, AdditionalViews/Cell/..., etc. |
+| Resources | Everything that isn't code and can be exchanged easily: Images(.xcassets), Settings.Bundle, HTML, Localisation string files, etc. |
+| External | Third Party libraries that cannot be integrated with Carthage or as pods. |
+| Helpers | Helper and manager classes that are generic enough to be copied/pasted (and slightly modified) into projects: HockeySDK, APIManager, DBManager, etc. |
+| Podfile | File listing all pods used by the project. https://cocoapods.org/ |
+| Podfile.lock | Generated file tracking the version of each Pod that was installed. |
+| Pods | Folder containing pods code sources. Could not be pushed on the repo (update the gitignore file). |
+| PLists | Folder containing all target info plist and CloudKit entitlements files: `Dr.Oetker-Verlag-Alpha-AdHoc-Info.plist`, `Digster-Live.entitlements`. |
+| README | File explaining, at least, how to clone, configure (submodules + pods) and run the project. |
 | Submodules | All submodules (sub repositories) for external libraries or small helpers. |
-| xcodeproj |	The Xcode project file. |
-| xcworkspace |	The Xcode workspace (current project + pods integrated). |
-| .gitignore |	Determine which files and directories to ignore in git, more information below. |
-| .swiftlint.yml |	Integrate and configure Swiftlint. See the dedicated page for more information. |
+| xcodeproj | The Xcode project file. |
+| xcworkspace | The Xcode workspace (current project + pods integrated). |
+| .gitignore | Determine which files and directories to ignore in git, more information below. |
+| .swiftlint.yml | Integrate and configure Swiftlint. See the [dedicated page](http://kevindelord.io/2016/04/06/integrate-swiftlint/) for more information. |
 
 ## Schemes and Targets
 
