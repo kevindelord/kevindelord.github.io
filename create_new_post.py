@@ -40,7 +40,7 @@ def clearString(s):
 	# Remove all duplicated whitespaces
 	s = re.sub(' +', ' ', s).strip()
 	# Remove all non-word characters (everything except numbers and letters)
-	s = re.sub(r"[^\w\s]", '', s).strip()
+	s = re.sub(r"[^\w\s-]", '', s).strip()
 	# Replace all runs of whitespace with a single dash
 	s = re.sub(r"\s", '-', s).strip()
 	# If the string was empty or just containing one single whitespace then return None
