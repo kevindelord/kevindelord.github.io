@@ -23,6 +23,7 @@ I'm also doing and maintaining few iOS libraries:
 * [DKHelper](https://github.com/kevindelord/DKHelper): Utility methods to improve code quality and reusability.
 * [DKDBManager](https://github.com/kevindelord/DKDBManager): Database manager with a complete CRUD integration.
 * [UIImage+Autoresize](https://github.com/kevindelord/UIImage-Autoresize): Naming convention for fullscreen images for all devices.
+* [Swift style guide](https://github.com/kevindelord/swift-style-guide): Swift style guide that defines a style, syntax and structure to code in Swift.
 
 If you are interested in my resume, click here (:construction_worker:)
 
