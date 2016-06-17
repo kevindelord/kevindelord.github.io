@@ -4,32 +4,58 @@ title: Configure an iOS build job on Jenkins
 summary: See how to setup a new iOS build job on jenkins with automatic new releases and push to HockeyApp.
 ---
 
-This page isn't about Jenkins and how it should be configured.
+This page isn't about Jenkins and how it should be configured but more about iOS build jobs.
 
-Nonetheless here is some information about iOS build jobs.
+It explains how to setup a job in order to properly build and release a new version of your app on [HockeyApp](https://www.hockeyapp.net).
 
-When creating a new job it is sometimes very useful to actually create a job from an already existing one.
-
-And then just configure the fields that need to be.
-
+The most relevant fields are explained and detailed with screenshots.
 
 ## Naming
 
-Every build jobs should be named regarding the **target** it is building.
+First of all, the name of the job should be very explicit. It should detail exactly _what_ it is and what it builds.
 
-For example:
+A good practice is to use the **target name** it is actually building.
+
+More information about correct target naming on this article: [Xcode Project Configuration](http://kevindelord.io/2016/06/08/project-configuration/).
+
+For example, with a project called `Dr.Oetker-Verlag` the build jobs on Jenkins would be named:
 
 ![_config.yml]({{ site.baseurl }}/images/jenkins/naming.png)
 
-## Poll SCM
+## SCM: Source Code Management
+
+Jenkins allows you to pull and build project using different source code management such as [Git](https://git-scm.com), [Mercurial](https://www.mercurial-scm.org), etc.
+
+In most case you need to specify two things:
+
+- **Repository URL**: The url pointing to your source code.
+- **Branch Specifier**: The branch to take the code from in order to build a new app version.
+
+![_config.yml]({{ site.baseurl }}/images/jenkins/git.png)
+
+## Build Triggers
+
+There are multiple ways to automatically trigger a build process.
+
+The most common ones are:
+
+- `Build after other projects are built`
+
+This will start a new build when another one has _successfully_ built.
+
+- `Build periodically`
+
+This will regurlarly trigger a new build at a constant interval of time.
+
+- `Poll SCM`
 
 This automatically build a new version every time something is pushed to the configured branch.
 
-It should only be activated for the base target, in most the `Project-Alpha-AdHoc`.
+this option should only be activated for the base target, in most the `Project-Alpha-AdHoc`. If you need to build other jobs, do it manually.
+
 
 ![_config.yml]({{ site.baseurl }}/images/jenkins/poll_scm.png)
 
-If you need to build other jobs, do it manually.
 
 ## Build Environment
 
