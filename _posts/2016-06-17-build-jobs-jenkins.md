@@ -69,7 +69,18 @@ If so, when scheduling 10 different builds they will all be done one by one.
 
 ### Critical block start-end and custom steps
 
+In Jenkins it is possible to setup many different building phases: Android, iOS, Sonar Analysis, Custom shell scripts, etc.
+
+In this article we are more interested in the following 2 build steps:
+
+- Mobile: iOS Building
+- Mobile: HockeyApp Deployment
+
+But, whenever you need to add steps you should keep in mind to _always_ add them between a `Critical block start` and a `Critical block end`.
+
 ![_config.yml]({{ site.baseurl }}/images/jenkins/blocks.png)
+
+To do so, use the button `Add build step`, select your step and drag'n'drop it between the critical blocks.
 
 ### Mobile: iOS Building
 
@@ -201,3 +212,5 @@ If enabled, the users will be notified by email that a new version is available.
 ![_config.yml]({{ site.baseurl }}/images/jenkins/hockey.jpg)
 
 PS: the tokens in the previous screenshot are fake.
+
+Thanks for reading :smile:
