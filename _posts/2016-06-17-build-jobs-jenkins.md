@@ -53,46 +53,151 @@ This automatically build a new version every time something is pushed to the con
 
 this option should only be activated for the base target, in most the `Project-Alpha-AdHoc`. If you need to build other jobs, do it manually.
 
-
 ![_config.yml]({{ site.baseurl }}/images/jenkins/poll_scm.png)
-
 
 ## Build Environment
 
-The **resource to manage exclusion** helps you to avoid conflict when building the same project with multiple targets at the same time.
+The **resource to manage exclusion** avoid conflicts when building the same project with multiple targets at the same time.
 
 All jobs for the same project should have the same value set.
 
-If so, when scheduling 10 different builds they will be done one by one.
+If so, when scheduling 10 different builds they will all be done one by one.
 
 ![_config.yml]({{ site.baseurl }}/images/jenkins/resource.png)
 
-## iOS Building
+## Build
+
+### Critical block start-end and custom steps
+
+![_config.yml]({{ site.baseurl }}/images/jenkins/blocks.png)
+
+### Mobile: iOS Building
+
+The _Mobile: iOS Building_ step contains 3 parts:
+
+- Distribution Certificate
+- Provisioning Profiles
+- Build
+
+#### Distribution Certificate and Provisioning Profiles
+
+When you are trying to build jobs related to a target inside an Xcode project or workspace, be sure that the _Provisioning Profiles_ have been uploaded to Jenkins.
+
+But also that the _Distribution Certificates_ that generated those profiles is correctly uploaded too!
+
+![_config.yml]({{ site.baseurl }}/images/jenkins/certificate.jpg)
+
+#### Build targets
+
+The _build_ step lets you configure many different things such as the path to the project, the cocoapods integration, the target to build etc.
+
+Here is a detailed list:
+
+- `Project Folder`
+
+The path to the folder containing your xcode project or workspace.
+
+- `Run 'pod install'`
+
+If enabled, execute the command line within the specified (or default) folder.
+
+- `Target`
+
+The target to build.
+
+- `Scheme`
+
+The **shared** scheme to build. This overrides the target.
+
+If you setup your project as explained in the other topic, the `Target` and `Scheme` values should be the same than the `Product Name` within Xcode.
+
+{% highlight swift lineanchors %}
+PRODUCT_NAME = $(TARGET_NAME)
+{% endhighlight lineanchors %}
+
+- `Configuration`
+
+The _build configuration_ used to build like `Debug` or `Release`.
+
+- `Zip up dSYM`
+
+Whenever the xcodebuild archives an app, it creates an `.ipa` file and one `.dSYM` file.
+
+A `.dSYM` file stores the debug symbols for your app. It is later used to replace the symbols in the crash logs with the appropriate methods names. By doing so, the logs will be readable and will make sense for a normal person.
+
+A zip version is required by HockeyApp and other crash reporter services.
+
+- `Increment Build Number`
+
+If enabled will increment the build number using the following command:
+
+{% highlight swift lineanchors %}
+$> agvtool next-version -all
+{% endhighlight lineanchors %}
+
+It should only be activated for the _base_ build job.
+
+- `Push increment version`
+
+If enabled will commit and push the changes made during the build to the selected branch.
+
+It should only be activated for the _base_ build job.
+
+##### Screenshot
 
 The following screenshot shows the general rule about the build job configuration.
 Please note that come configuration change if the target is the base one or not.
 
-![_config.yml]({{ site.baseurl }}/images/jenkins/build_settings.jpg)
+![_config.yml]({{ site.baseurl }}/images/jenkins/build.jpg)
 
-### Important
-
-**Increment Build Number** and **Push increment version number to git after build** should only be activated for the _base_ build job.
-
-The **API Token** should be the same one for every project.
-
-The **App ID** is actually the Hockey App ID for the current target.
-
-### Pro Tip
+##### Important
 
 When building a whole new set of versions (`Alpha-AdHoc`, `Beta-InHouse`, etc.) always try to **just build the base job/target first**, and then (when it's done) all the others.
 
-By doing this, you will make sure all new released versions will have the same version number.
+By doing so, you will make sure all new released versions will have the same version number.
 
-## Distribution Certificate and Provisioning Profiles
+### HockeyApp Deployment
 
-When you are trying to build jobs related to a target inside a xcode project or workspace, be sure that the **Provisioning Profiles** have been uploaded to Jenkins.
+The step to deploy to HockeyApp contains the following options:
 
-But also that the **Distribution Certificates** that generated those profiles is correctly uploaded too!
+- `API Token`
 
-![_config.yml]({{ site.baseurl }}/images/jenkins/certificate.jpg)
+This token is given by HockeyApp and it gives you the permission to deploy new builds.
 
+- `App ID`
+
+The _App ID_ is actually the Hockey App ID for the current target. This unique identifier is generated when creating new app on Hockey.
+
+To learn more about configuring HockeyApp, see [this topic](http://kevindelord.io/2016/04/19/configure-hockeyapp).
+
+- `File to Deploy`
+
+Path to the `.ipa` file to upload to Hockey.
+
+- `Debug file`
+
+Path to the `.dSYM.zip` files.
+
+- `Release Notes`
+
+Custom release notes.
+
+- `Attach SCM changes to release notes`
+
+If enabled, the commit messages will be used as release notes.
+
+- `Make the build downloadable`
+
+If enabled, the build will be downloadable from Hockey.
+
+- `Private download page`
+
+If enabled, only specific group (and registered) users will be able to access the download page.
+
+- `Notify users`
+
+If enabled, the users will be notified by email that a new version is available.
+
+![_config.yml]({{ site.baseurl }}/images/jenkins/hockey.jpg)
+
+PS: the tokens in the previous screenshot are fake.
