@@ -325,7 +325,8 @@ I'm talking about external constant strings that need to be seen/found super eas
 For example backend/API URL, credentials, application name, etc.
 As we configure our project with one plist file per target, it is then super easy to have different APIs for different targets.
 Even better, in the code you do not need to change anything depending on your target or configuration.
-SMF iOS > iOS Code Quality and Structure > plist.png
+
+![_config.yml]({{ site.baseurl }}/images/codequality/plist.png)
 
 As you can see the keys are actually the ones defined in the Constants file. In the code it is now possible to fetch the value with just one simple line:
 
