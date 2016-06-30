@@ -31,7 +31,7 @@ disqus_shortname:
 
 # Facebook Comments plugin
 # (leave blank to disable Facebook Comments, otherwise set it to true)
-facebook_comments:
+facebook_comments:    true
 facebook_appid:
 facebook_comments_number: 10
 
