@@ -12,7 +12,7 @@ Some points might not be suitable for certain languages, or you could even disag
 
 But, when a developer keeps jumping between projects with different structures and languages without a global, strict (and restrictive) convention, the general quality will instantly decrease and slow down the development time.
 
-In few words: the devs go crazy, all projects crash, end of the world. :bomb: :fire:
+In few words: the devs go crazy, all projects crash, end of the world. :bomb: :boom: :fire:
 
 ## Align & structure your code
 
@@ -111,36 +111,44 @@ Private or internal libraries are also good as far as you do not re-code or re-i
 
 ## NSNotificationCenter is hell
 
-Try to avoid as much as possible the NSNotificationCenter. We have lost project due to this thing.
+Try to avoid as much as possible the `NSNotificationCenter`. Many projects have been lost in the darkness due to this thing. :dizzy_face:
+
 In few words, it sends magical calls to an unknown number of observers that do unknown actions without any flow/logic of what is actually going on in the app.
+
 This very bad practice can seriously breaks the app and be the worst nightmare of your developer's life.
+
 You should restructure again your code and use custom delegates or (even better) blocks instead.
-PS: so far we just allow it for the keyboard notifications.
+
+PS: So far you need them for the keyboard notifications...
 
 ## KVO ain't good
 
-Key Value Observing is mostly the same thing.
+_Key Value Observing_ is mostly the same thing.
+
 It is a bit too complex, not easy to read, and dangerous (could make the app crash if the observer or the observed objects are deleted).
+
 In most cases delegates and blocks could be used instead!
 
 ## Constants in one single file
 
-The constants should be in one single constants files called Constants.swift or Constants.h.
-Of course this file should also be prefix depending on your project.
-As said earlier, the more your file is structured the better. Create structures, add comments and pragma marks. Try to avoid single and anarchic constants without logic or explanation around.
-In our case, what constant means is all string/number that are fixed and can't be dynamically changed.
-They are used for database keys, API endpoint and response code, user default keys, segue identifier, etc. Actually all values that should not change. But if they do, they are all created in one single file and the change will take mostly 5 seconds.
+The constants should be in one single constants files called `Constants.swift` or `Constants.h`.
 
-Here is an example:
+Of course this file should also be prefixed depending on your project.
+
+As said earlier, the more your file is structured the better. Create structures, add comments and `pragma marks`. Try to avoid single and anarchic constants without logic nor explanation around.
+
+What _constant_ means is all strings/numbers that are fixed and can't be dynamically changed.
+
+They are used for database keys, API endpoint and response code, user default keys, segue identifier, etc. Actually all values that should not change over time. But if they do, they are all created in one single file and the change will take mostly 5 seconds.
 
 PS: Note how everything is aligned.
 
 NOTE: Use the UpperCamelCase for all Enum, Struct, case, static variable names.
 
 {% highlight swift %}
-//
-// User Default
-//
+
+// MARK: - User Default
+
 enum HUUserDefault                          : String {
 
     // Keys set in PList files
@@ -153,27 +161,23 @@ enum HUUserDefault                          : String {
     static let allValues                    = [AppId, HockeyId, APIBaseURL, APIUserCredential, APIPasswordCredential]
 }
 
+// MARK: - Segues
 
-//
-// Segues
-//
 enum HUSegueIdentifier                      : String {
     case FormulaDetail                      = "showDetailFormula"
     case SearchViewController               = "showSearchView"
 }
 
-//
-// Cells
-//
+// MARK: - Cells
+
 enum HUCellReuseIdentifier                  : String {
     case FormulaCell                        = "HUFormulaCell_id"
     case SearchCell                         = "HUSearchCell_id"
     case OptionCell                         = "HUOptionCell_id"
 }
 
-//
-// Database
-//
+// MARK: - Database
+
 struct DB {
 
     static let DatabaseName                 = "Huethig.sqlite"
@@ -186,9 +190,8 @@ struct DB {
     }
 }
 
-//
-// API
-//
+// MARK: - API
+
 struct API {
 
     // Endpoints
