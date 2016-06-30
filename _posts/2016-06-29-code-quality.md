@@ -149,44 +149,44 @@ NOTE: Use the UpperCamelCase for all Enum, Struct, case, static variable names.
 
 // MARK: - User Default
 
-enum HUUserDefault                          : String {
+enum HUUserDefault              : String {
 
     // Keys set in PList files
-    case AppId                              = "AppId"
-    case HockeyId                           = "HockeyAppId"
-    case APIBaseURL                         = "ApiBaseURL"
-    case APIUserCredential                  = "ApiUserCredential"
-    case APIPasswordCredential              = "ApiPasswordCredential"
+    case AppId                  = "AppId"
+    case HockeyId               = "HockeyAppId"
+    case APIBaseURL             = "ApiBaseURL"
+    case APIUserCredential      = "ApiUserCredential"
+    case APIPasswordCredential  = "ApiPasswordCredential"
 
-    static let allValues                    = [AppId, HockeyId, APIBaseURL, APIUserCredential, APIPasswordCredential]
+    static let allValues        = [AppId, HockeyId, APIBaseURL, APIUserCredential, APIPasswordCredential]
 }
 
 // MARK: - Segues
 
-enum HUSegueIdentifier                      : String {
-    case FormulaDetail                      = "showDetailFormula"
-    case SearchViewController               = "showSearchView"
+enum HUSegueIdentifier          : String {
+    case FormulaDetail          = "showDetailFormula"
+    case SearchViewController   = "showSearchView"
 }
 
 // MARK: - Cells
 
-enum HUCellReuseIdentifier                  : String {
-    case FormulaCell                        = "HUFormulaCell_id"
-    case SearchCell                         = "HUSearchCell_id"
-    case OptionCell                         = "HUOptionCell_id"
+enum HUCellReuseIdentifier      : String {
+    case FormulaCell            = "HUFormulaCell_id"
+    case SearchCell             = "HUSearchCell_id"
+    case OptionCell             = "HUOptionCell_id"
 }
 
 // MARK: - Database
 
 struct DB {
 
-    static let DatabaseName                 = "Huethig.sqlite"
+    static let DatabaseName     = "Huethig.sqlite"
 
     struct Key {
-        static let Id                       = "id"
-        static let UpdatedAt                = "lastUpdate"
-        static let Key                      = "key"
-        static let Value                    = "value"
+        static let Id           = "id"
+        static let UpdatedAt    = "lastUpdate"
+        static let Key          = "key"
+        static let Value        = "value"
     }
 }
 
@@ -195,65 +195,61 @@ struct DB {
 struct API {
 
     // Endpoints
-    enum Endpoint                           : String {
-        case Formula                        = "formula"
-        case PDF                            = "pdf"
-        case ProductId                      = "productid"
+    enum Endpoint               : String {
+        case Formula            = "formula"
+        case PDF                = "pdf"
+        case ProductId          = "productid"
     }
 }
 {% endhighlight %}
 
 ## Defines also in a dedicated file
 
-A define is a value used to configure and modify how the app reacts. They should be written in the Defines file.
+A define is a value used to configure and modify how the app reacts. They should be written in the `Defines.swift` or `Defines.h` file.
 
-In the end this file should be pretty small with just defines (Obj-C) or static variables (Swift) to really control the app:
+In the end this file should be pretty small with just `#define` (Obj-C) or static variables (Swift) to really control the app:
 
-- enable log or not.
-- reset the database.
-- unable the DEBUG mode for some libraries.
-- disable a feature or not.
+- Enable log or not.
+- Reset the database.
+- Unable the DEBUG mode for some libraries.
+- Disable a feature or not.
 
 Here is an example in Swift:
 
 {% highlight swift %}
-//
-// Debug
-//
+
+// MARK: - Debug
+
 #if DEBUG
 private let _isDebug = true
 #else
 private let _isDebug = false
 #endif
 
-//
-// Configuration
-//
+// MARK: - Configuration
+
 struct Configuration {
-	static let DebugAppirater			= (false && _isDebug)
-	static let RestoreDatabase			= (false && _isDebug)
-	static let EtagDisabled				= (false && _isDebug)
+	static let DebugAppirater      = (false && _isDebug)
+	static let RestoreDatabase     = (false && _isDebug)
+	static let EtagDisabled        = (false && _isDebug)
 }
 
-//
-// Verbose
-//
-struct Verbose {
+// MARK: - Verbose
 
+struct Verbose {
 
     // Manager and helpers
     struct Manager {
-        static let API                  = false
-        static let JSON                 = false
-        static let DB                   = false
+        static let API                 = false
+        static let JSON                = false
+        static let DB                  = false
     }
-
 
     // Database model entities
     struct DB {
-        static let Formula              = false
-        static let Variant              = false
-        static let Item                 = false
+        static let Formula             = false
+        static let Variant             = false
+        static let Item                = false
 	}
 }
 {% endhighlight %}
