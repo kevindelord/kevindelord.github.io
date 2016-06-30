@@ -257,54 +257,58 @@ struct Verbose {
 ## Control your log
 
 There is nothing more annoying than starting an app and not being able to understand what is going on in the console as the log is flooding like an heavy rain.
-To avoid that, we forbid to use anarchic NSLog or println lost in the code for no reason.
-Usually we just use it to log dynamic errors as they are extremely important to know when/what/where something wrong happens.
-But at the time, log is very helpful and can save a lot of time while coding/debugging. In this context, using logs is not a bad thing at all but should just be used and controlled wisely.
-To do so use the  DKLog function. It takes as parameter a boolean to dynamically enable the log or not, and of course, a string to print.
+
+To avoid that, try to forbid the use of anarchic `NSLog` or `print` lost in the code for no reason.
+
+Usually, only the dynamic errors (from the database or the API) should be automatically logged as they are extremely important to know when/what/where something wrong happens.
+
+Using logs is not a bad thing at all but it should be used and controlled wisely.
+
+To do so use the `DKLog` function from the [DKHelper](https://github.com/kevindelord/DKHelper). It takes as parameter a boolean to dynamically enable the log or not, and of course, a string to print.
+
 The verbose boolean should be on the Defines header file.
-Example:
 
 {% highlight swift %}
 DKLog(Verbose.Manager.API, "API Credentials ID: \(account) - password:\(password)")
 {% endhighlight %}
 
 ## Comment your code
-A beautiful code is also a documented code. You should always try to explain and document the logic your are implementing.
-Even if it looks simple, and it surely does "now", for you but it won't in 5 months for another developer.
-Comments above the functions are, of course, well appreciated to explain what they are doing, the purpose and general informations about them.
-But inline comments are also very used to describe step-by-step what is going on inside the function.
+
+A beautiful code is also a documented one. You should always try to explain and document the logic you are implementing.
+
+Even if it looks simple, and it surely does "now", but it won't be in 5 months for another developer.
+
+Comments _above_ the functions are, of course, well appreciated to explain the purpose and general informations.
+
+But inline comments are also very useful to describe step-by-step what is going on _inside_ the function.
 
 {% highlight swift %}
-/**
- Function to calculate top margin for the current view depending on [...]
- - parameter default: Default value used
-
- - return: CGFloat value corresponding to the calculated margin.
- */
-func calculateTopMargin(default: Int) -> CGFloat {
+//
+// Function to calculate top margin for the current view depending on [...]
+// - parameter defaultGap: Default value used
+//
+// - return: CGFloat value corresponding to the calculated margin.
+//
+func calculateTopMargin(defaultGap: Int) -> CGFloat {
 
 	// Get the top x origin
 	let separatorFrame = self.separator?.frame.x
 
 	// Calculate position depending on [...]
-	let finalPosition = (separatorFrame * 2) + self.defaultGap()
+	let finalPosition = (separatorFrame * 2) + defaultGap
 
-	// Apply frame
-	self.popUpView?.frame = CGRectMake(...)
+	return finalPosition
 }
 {% endhighlight %}
 
-## Prefix files and classes
-
-For historical reason we keep prefixing all our classes and files.
-It might not be needed in Swift (due to the modules) but, as we sometimes work on an Obj-C project and one hour later on Swift, we should try to keep on having the logic.
-For example with the following projects, we gave simple but efficient prefix: HH for Handhelp, DI for Digster, etc.
-
 ## Localise your project
 
-How many times did you have to search though the whole project to fix a little typo? And then realise that this hard-coded string has been copy-pasted hundred times? How many times did you just do your app in one language and after months of development had to add a new language?
-All this do happen... way too many times. It appears to be much better when the app is by default localised in whatever language with the Base localisation.
-Even if the app is just in one language, you should always make the effort to add a key/value into a Localization.strings file.
+How many times did you have to search through the whole project to fix a little typo? And then realise that this hard-coded string has been copy-pasted hundred times? How many times did you just do your app in one language and after months of development had to add a new language?
+
+All this do happen... way too many times. It appears to be much better when the app is by default localised in whatever language with the `Base localisation`.
+
+Even if the app is just in one language, you should always make the effort to add a key/value into a `Localization.strings` file.
+
 Please, also note that even the localisation file is aligned.
 
 {% highlight swift %}
@@ -320,78 +324,102 @@ Please, also note that even the localisation file is aligned.
 ## No Storyboard localisation
 
 If you decide to localise your storyboard you might save some times in the beginning as you can change the text for every label from dedicated string files.
-This sounds very handy but it is actually a bad practice. The keys are not "developer-friendly" at all. They are just Stroyboard ids like 3ds-4e-drg, which is a nightmare to localise and translate as you don't know which label it is.
-In general, force yourself to add a class to your labels and use the appearance framework or create an outlet and set the text dynamically.
+
+This sounds very handy but it is actually a bad practice. The keys are not _developer-friendly_ at all. They are just Stroyboard ids like `3ds-4e-drg`, which is a nightmare to localise and translate as you don't know which label it is.
+
+In general, force yourself to add a class to your labels and use the [Appearance framework](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIAppearance_Protocol/) or create an outlet and set the text dynamically.
 
 ### PhraseApp and Localisation services
 
-For some projects you might want to integrate a string localisation service such as PhraseApp, Transiflex, LingoHub, etc.
-They usually need/want just one strings file per language.  How could you do that with many strings file everywhere in your project?
-Once again, just use one simple and single string file per language.
+For some projects you might want to integrate a string localisation service such as `PhraseApp`, `Transiflex`, `LingoHub`, etc.
+
+They usually need/want just one strings file per language. How could you do that with many string files everywhere in your project?
+
+Once again, just use one simple and single string file per language. :+1:
 
 ## PList configuration
 
-On every project there is some third party libraries than need ID, client keys, project tokens, etc.
-But there is also some constant values that are used by the app which are more than simple "constants".
-I'm talking about external constant strings that need to be seen/found super easily and quickly.
-For example backend/API URL, credentials, application name, etc.
-As we configure our project with one plist file per target, it is then super easy to have different APIs for different targets.
-Even better, in the code you do not need to change anything depending on your target or configuration.
+On every project there is some third party libraries that need ID, client keys, project tokens, etc.
+
+But there is also some constant values that are used by the app which are _more_ than simple constants. For example: API URL, credentials, application name, etc.
+
+As a project is configured with one `plist` file per target, using this file makes it super easy to have different APIs for different targets.
+
+Even better in the code, you do not need to change anything depending on your target or configuration.
 
 ![_config.yml]({{ site.baseurl }}/images/codequality/plist.png)
 
 As you can see the keys are actually the ones defined in the Constants file. In the code it is now possible to fetch the value with just one simple line:
 
 {% highlight swift %}
-let applicationId = NSBundle.entryInPListForKey(UserDefault.ParseAppId.rawValue) as? String
+let applicationId = NSBundle.stringEntryInPListForKey(UserDefault.ParseAppId.rawValue)
 {% endhighlight %}
+
+Documentation: [NSBundle.stringEntryInPListForKey:](http://cocoadocs.org/docsets/DKHelper/2.2.2/Categories/NSBundle+DKHelper.html#//api/name/stringEntryInPListForKey:)
 
 ## Function naming and convention
 
 Be extremely careful on the function names: they have to be very explicit on what they do.
+
 The other way around, the code should match the function name (the name should tell what the function does).
+
 It is super easy to keep coding and changing your code, and in the end have a function doing something completely different than what its name says.
 
 Other point, a function should not exceed 40 lines. This drastic limit forces the developer to think twice about the code and its structure.
-A better encapsulation will help you with this rule.
+
+A better encapsulation will help you with this rule. :see_no_evil:
 
 ## Images.xcassets
 
-The Images.xcassets should be used as much as possible within the Resource folder.
+The `Images.xcassets` should be used as much as possible within the `Resource` folder.
+
 Add all app icons, launch screens, image files, etc.
-For vertical full screen size images you  can use the .xcassets as Launchscreen images.
-But if your app as to deal with horizontal display you should use this library: UIImage+Autoresize
+
+For vertical full screen size images you can use the .xcassets as Launchscreen images.
+
+But if your app as to deal with horizontal display you should use this library: [UIImage+Autoresize](https://github.com/kevindelord/UIImage-Autoresize)
 
 ## Xib and Storyboard files
 
 Small but important rule, do not commit unchanged xib files.
-When you open one of them, Xcode always uselessly change some IDs, timestamp, version numbers, etc.
+
+When you open one of them, Xcode always uselessly change some IDs, timestamp, version numbers, etc. :confounded:
+
 Please, discard those minor useless changes before committing. It is not extremely important but some conflicts could occurs and they are always annoying while reviewing the code.
 
 ## Database
 
 This is not a tutorial on how to use/code with a database.
-We usually use the library DKDBManager for our projects.
+
 The point here is to remind you to never use hard coded keys, but always use the ones created in the constants file.
+
 In the following example, two keys are used from the constant file:
 
 {% highlight swift %}
-override public class func primaryPredicateWithDictionary(dictionary: [NSObject:AnyObject]!) -> NSPredicate! {
+override class func primaryPredicateWithDictionary(dictionary: [NSObject:AnyObject]?) -> NSPredicate? {
     return NSPredicate(format: "\(DB.Key.Id) ==[c] \(GET_NUMBER(dictionary, JSON.Key.Id))")
 }
 {% endhighlight %}
 
-## No Warning allowed
+Function from: [DKDBManager](https://github.com/kevindelord/DKDBManager).
 
-Another very important point are the compilation warnings. Without surprise we do not allow them at all.
-A "small" warning today is a crash tomorrow. They are dangerous, exist for a reason and only show how lazy and inattentive a developer could be.
+## No Warning allowed :warning:
+
+Another very important point are the compilation warnings. Without surprise, do not allow them at all.
+
+> A small warning today is a crash tomorrow.
+
+They are dangerous, exist for a reason and only show how lazy and inattentive a developer could be.
+
 Be also extremely attentive when updating pods and other libraries. Warnings are also very helpful to understand what changes occurred and what needs to be done.
 
 ## Minor Optimisation
 
 A good app is also about small optimisations all along the time of development.
-One good thing to do is to use easy things for us that actually help a lot the processor at the runtime.
-For example the division is a much harder task and a multiplication.
+
+One good thing is to help the processor at the runtime.
+
+For example the division is a much harder task than a multiplication.
 
 {% highlight swift %}
 // Always prefer to use a multiplication instead of a division.
@@ -403,9 +431,14 @@ var b = 10 / 2
 
 ## Yes, rounded brackets!
 
-Here we go with another restrictive rule: the rounded brackets. For historical reason and for a better readability a developer should use rounded brackets mostly everywhere.
-It keep the code more understandable and prevent easy mistakes.
-They are required when comparing values, ternary operators,  if else, while, ?? (swift) and where (swift).
+Here we go with another restrictive rule: the rounded brackets.
+
+For historical reason and for a better readability a developer should use rounded brackets mostly everywhere.
+
+It keeps the code more understandable and prevent easy mistakes.
+
+They are required when comparing values, ternary operators, `if else`, `while`, `??` (swift) and `where` (swift).
+
 Here you go with an example in Swift showing all cases:
 
 {% highlight swift %}
@@ -417,48 +450,43 @@ while (check == true) {
 	if (i >= 10) {  // if
 		check = false
 	} else if (i == 2) {
-		i++
+		i += 1
 	}
 	message = (check == true ? "valid" : "invalid") // ternary
 	if let msg = message as? String where (i > 7) { // where
 		println(message)
 	}
-	i++
+	i += 1
 }
 return (message ?? "message does not exist") // ??
 {% endhighlight %}
 
-## Ternary operator
+### Ternary operator
 
+The ternary operator is amazing, handful and pretty. But it can also be badly used and gives headaches to any developers.
 
-This ternary is amazing handful and pretty, but it can also be badly used and gives headaches to any developers.
-One should only use it with just one level of operation and with rounded brackets.
+One should only use it with just **one level** of operation and with rounded brackets.
+
 Without those rules, a developer will code this:
 
 {% highlight swift %}
 value = a == b ? b != c ? 4 : d == e ? 6 : 1 : 0
 {% endhighlight %}
 
-This is horrible to read, debug and understand.
+This is horrible to debug, to read or to understand.
 
-## Obj-C
+## Style Guide
 
-Custom protocols (aka delegates)
-Obj-C only: Create custom protocols (aka delegates) instead giving a pointer to a view controller. Example: a view controller containing a tableview. The cells should talk to the controller though a very specific delegate. The cell can of course receive data from the controller on the initialisation.
-Modern Obj-C
-Obj-C: use the "dot" logic because of modern-obj: self.songPositionLabel.text instead of [[self songPositionLabel] text]
-Run the Modern Obj-C script once in a while.
-Syntax
-Here is a list of famous and well known Obj-C style guide:
-https://github.com/NYTimes/objective-c-style-guide
-https://github.com/raywenderlich/objective-c-style-guide
-https://github.com/github/objective-c-style-guide
+Here is a list of famous and well known Obj-C style guides written by:
 
-## Swift
+- [NYTimes](https://github.com/NYTimes/objective-c-style-guide)
+- [raywenderlich](https://github.com/raywenderlich/objective-c-style-guide)
+- [github](https://github.com/github/objective-c-style-guide)
 
-As Swift tends to be the most used language in our company, a developer should follow this very specific style-guide:
-https://github.com/kevindelord/swift-style-guide
+And some others for Swift written by:
 
-It is based on other well known guidelines but has been improved to better match our goals and syntax.
-The current page explains general setups and common knowledge when developing an app.
-It is as much important as the swift-style-guide page.
+- [kevindelord](https://github.com/kevindelord/swift-style-guide)
+- [raywenderlich](https://github.com/raywenderlich/swift-style-guide)
+- [Apple on swift.org](https://swift.org/documentation/api-design-guidelines)
+
+Thanks for reading and happy coding! :wink:
