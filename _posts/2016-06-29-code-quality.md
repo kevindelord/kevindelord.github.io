@@ -4,36 +4,37 @@ title: Code Quality in iOS
 summary: Coding guidelines helping to write a better code in iOS
 ---
 
-What are the different rules and code guidelines expected on an iOS project.
+When coding on iOS, have you ever wished to have a common structure between your projects? a standard way of coding for your team? More than a code style guide but like a _code structure guide_ ?
 
-Depending on the language some following points might be useless or a even annoying for some developers.
+This article presents different rules and code guidelines that could help to strucutre your projects and improve the quality of the code.
+
+Some points might not be suitable for certain languages, or you could even disagree.
 
 But, when a developer keeps jumping between projects with different structures and languages without a global, strict (and restrictive) convention, the general quality will instantly decrease and slow down the development time.
 
-In few words: the devs go crazy, all projects crash, end of the world, boom.
-
+In few words: the devs go crazy, all projects crash, end of the world. :bomb: :fire:
 
 ## Align & structure your code
 
-Make sure the code is aligned to itself. This is just about structure and better looking code: the "=", the start of the lines, the function names, etc. The alignment is done with "tabulations".
+Make sure the code is aligned to itself. This is just about structure and better looking code: the `=`, the start of the lines, the function names, etc.
+
+The alignment is done with tabulations.
 
 It is also extremely appreciated to use comments to separate the class attributes and pragma mark between functions.
 
-An example:
-
 {% highlight swift %}
-class MyViewController						: UIViewController {
+class MyViewController				: UIViewController {
 
 	// MARK: - Outlets
 
-	@IBOutlet var lettersGameButton			: UIButton?
+	@IBOutlet var lettersGameButton		: UIButton?
 	@IBOutlet var headBodyLegsGameButton	: UIButton?
 	@IBOutlet var colorMatcherGameButton	: UIButton?
 
 	// MARK: - Instance Variables
 
-	var destinationType						: FFGameType?
-	let transitionManager				 	= FFTransitionManager()
+	var destinationType                     : FFGameType?
+	let transitionManager                   = FFTransitionManager()
 
 	// MARK: - View Lifecycle
 
@@ -52,9 +53,9 @@ class MyViewController						: UIViewController {
 
 ## No magic numbers
 
-No magic numbers in any case, by any chance. It has to be or dynamic from an outlet, or calculated.
+A very simple rule, one should never ever write nor use magic numbers. Numeric values should be either dynamic (from an IBOutlet) or calculated.
 
-If, somehow, it is absolutely NOT possible, then create a constant in the constants file inside a structure.
+If, somehow, it is absolutely NOT possible, then use a constant set in the constants file inside a structure.
 
 The following example show how to create such structures.
 
@@ -73,28 +74,40 @@ struct GameConstants {
     // Informative comment about the type of constant
     static let ScrambleAnimationDelay	= 0.6
 
-	// Animation Duration for pop up in [...]
-	struct AnimationDuration {
-	    static let FadeOut 				= 0.3
-		static let FadeIn 				= 0.5
-	}
+    // Animation Duration for pop up in [...]
+    struct AnimationDuration {
+        static let FadeOut              = 0.3
+        static let FadeIn               = 0.5
+    }
 
- 	// Top margin for view XY. Can't be dynamic because of [...]
-    static let TopViewLeftMargin 		= 20
+    // Top margin for view XY. Can't be dynamic because of [...]
+    static let TopViewLeftMargin    = 20
 }
 {% endhighlight %}
 
 ## No duplicated code
 
-Duplicate code and/or logic are not allowed. In any case.
+Duplicate code and/or logic should not be allowed. In any case.
+
 When coding you should always be able to reuse your code from the current app or common helpers.
-The common excuses are : "it's just 3 lines" or "it's not important" or "but whatever".
+
+The common excuses are: "_it's just 3 lines_" or "_it's not important_" or "_but whatever_".
+
+:sweat:
+
 All this just show how bad your code (structure) is. The debug of such code will be a nightmare for the developer in few months and a huge problem for the team.
-Use libraries
-In general we try to use open-source libraries as much as possible through cocoapods: AFNetworking, HockeySDK, DKDBManager, SwipeView, etc.
-We also have other open libraries we use internally in all our projects:
-Obj-C and Swift: DKHelper contains a whole bunch of helpers, categories and utilities.
-Swift only: DKExtensionsSwift contains Swift extensions that can't be done in Obj-C and integrated into the DKHelper.
+
+## Use libraries
+
+In general try to use open-source libraries as much as possible through a dependency manager. For example `AFNetworking`, `HockeySDK`, `DKDBManager`, `SwipeView`, etc.
+
+The most famous dependency managers are:
+
+- [Cocoapods](https://cocoapods.org/)
+- [Carthage](https://github.com/Carthage/Carthage)
+- [Swift Package Manager](https://github.com/apple/swift-package-manager)
+
+Private or internal libraries are also good as far as you do not re-code or re-invent something that already exists.
 
 ## NSNotificationCenter is hell
 
