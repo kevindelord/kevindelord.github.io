@@ -39,7 +39,7 @@ PS: It's all open source, send me a Pull Request :bowtie:
 
 ## World Trip
 
-Starting September 2016, I will start a world trip for about 2 years.
+Starting September 2016, I will start a trip around the world for about 2 years.
 
 If you are interesting, I will post some pictures on this website: [picturemy.world](http://picturemy.world)
 
