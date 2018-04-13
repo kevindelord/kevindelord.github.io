@@ -13,19 +13,18 @@ I'm an iOS Lead Developer at the Smart Mobile Factory in Berlin, Germany.
 
 Over the years, I've worked on more than 40 projects, and my skills include:
 
-* Swift, Objective-C, C++, C, Ruby, C#, Python and HTML.
-* Unit Tests, UI Tests and Core Data.
+* Swift, Objective-C, C++, C, Ruby, C#, Python, Perl, Java, JavaScript, HTML, Node.JS
+* Unit tests, UI tests, code quality and pull requests.
+* Database such as Core Data, MagicalRecord or Realm.io.
 * Apple certificates and provisioning profiles.
 * Team Leading and Teaching (internal talks)
 
 I'm also doing and maintaining few iOS libraries:
 
-* [DKHelper](https://github.com/kevindelord/DKHelper): Utility methods to improve code quality and reusability.
 * [DKDBManager](https://github.com/kevindelord/DKDBManager): Database manager with a complete CRUD integration.
-* [UIImage+Autoresize](https://github.com/kevindelord/UIImage-Autoresize): Naming convention for fullscreen images for all devices.
 * [Swift style guide](https://github.com/kevindelord/swift-style-guide): Swift style guide that defines a style, syntax and structure to code in Swift.
 
-If you are interested in my resume, click [here]({{ site.baseurl }}/images/delord_kevin_CV_EN_07_2016.pdf).
+You can find my resume right [here]({{ site.baseurl }}/images/kevin_delord_CV_EN_04_2018.pdf).
 
 ## This Blog
 
@@ -33,16 +32,14 @@ This Blog is about working in the iOS world: coding in swift, building, releasin
 
 It tries to bring some light on unclear or complicated topics.
 
-If you see something wrong, stupid or deprecated, please contact me! I would be glad to talk about it.
+If you see something wrong or deprecated, please contact me! I would be glad to talk about it.
 
 PS: It's all open source, send me a Pull Request :bowtie:
 
 ## World Trip
 
-Starting September 2016, I will start a trip around the world for about 2 years.
+From September 2016 to April 2018, I travelled the world and did post my pictures and stories on that website: [picturemy.world](http://picturemy.world)
 
-If you are interesting, I will post some pictures on this website: [picturemy.world](http://picturemy.world)
-
-Best,
+Check it out
 
 Kevin :yum:
